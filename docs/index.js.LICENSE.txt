@@ -1,0 +1,13 @@
+/*
+ * Demo shows the examples, how to call sdk
+ */
+
+/* harmony default export */
+
+/******/
+
+// CONCATENATED MODULE: ../src/oberton.js
+
+// CONCATENATED MODULE: ./index.js
+
+// webpackBootstrap

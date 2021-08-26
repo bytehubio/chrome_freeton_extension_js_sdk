@@ -1,0 +1,23 @@
+{
+  "name": "@oberton/sdk",
+  "version": "1.0.1",
+  "description": "SDK to interact from web with the Oberton Chrome Extension",
+  "main": "src/oberton.js",
+  "scripts": {
+    "dev": "webpack serve --port 1238",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Oberton",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.3.2",
+    "terser-webpack-plugin": "^5.2.3",
+    "webpack": "^5.49.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}

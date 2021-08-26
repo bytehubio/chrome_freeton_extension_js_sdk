@@ -1,0 +1,148 @@
+<!doctype html><html><head><meta charset="utf-8"/><title>Oberton SDK Demo</title><style>* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.3rem;
+  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100%;
+}
+
+.tbl {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  table-layout: fixed;
+}
+
+.tbl-cell {
+  display: table-cell;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: #1a73e8;
+}
+
+.link-nav {
+  color: #222;
+}
+
+.link-nav:hover {
+  color: #1a73e8;
+}
+
+.mono {
+  font-family: monospace;
+}
+
+.gtr {
+  padding: 15px;
+}
+
+.gtr-b {
+  padding-bottom: 15px;
+}
+
+.ov-auto {
+  overflow: auto;
+}
+
+pre {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+pre:before {
+  content: '';
+  display: table;
+}
+
+pre:after {
+  content: '';
+  display: table;
+}
+
+code {
+  display: block;
+  width: 100%;
+  background: #dddddd1a;
+  font-family: monospace;
+  color: #1a73e8;
+  padding: 10px;
+  margin: 0;
+  line-height: 1;
+}</style></head><body><div class="tbl"><div class="tbl-cell gtr" style="width: 180px; vertical-align: top;"><div style="position: sticky; top: 15px; left: 15px; padding: 15px;"><div class="gtr-b"><a class="link-nav" href="#install">Install</a></div><div class="gtr-b"><a class="link-nav" href="#use">Use</a></div><div class="gtr-b"><a class="link-nav" href="#methods">Send Tokens</a></div><div class="gtr-b"><a class="link-nav" href="#events">Events</a></div></div></div><div class="tbl-cell ov-auto" style="padding-bottom: 45px;"><div><div class="gtr" id="install"><h1>Installation</h1><pre><code>npm install @oberton/sdk</code></pre><h2>Include from CDN</h2><pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@oberton/sdk@1.0.1/docs/index.js"&gt;&lt;/script&gt;</code></pre></div><div class="gtr" id="use"><h1>Use</h1><pre><code>import Oberton from '@oberton/sdk';
+
+// if use CDN script, Oberton is accesible over window.Oberton
+
+const optionalOptions = {
+  skipPromoDialog: false, // show dialog with the link to webstore, if user doesn't have the Oberton extension installed
+};
+
+const oberton = new Oberton('net.ton.dev', optionalOptions);</code></pre></div><div class="gtr" id="methods"><h1>Send Tokens</h1><p>returns <a class="mono" href="#events">tmpId{String}</a>, that is passed as an argument, when transaction sent or failed</p><pre><code>oberton.sendTokens({
+  to: '0:dc5612b47ef94b8eed1358f2d118757c66e2a120e9d3e623b148710a50661f20',
+  amount: 0.5,
+});</code></pre></div><div class="gtr"><h2>Send Tokens With Comment</h2><pre><code>oberton.sendTokens({
+  to: '0:dc5612b47ef94b8eed1358f2d118757c66e2a120e9d3e623b148710a50661f20',
+  amount: 0.5,
+  payloadType: 'comment',
+  comment: 'Hello World',
+});</code></pre></div><div class="gtr"><h2>Send Tokens With Custom Function</h2><pre><code>oberton.sendTokens({
+  to: '0:dc5612b47ef94b8eed1358f2d118757c66e2a120e9d3e623b148710a50661f20',
+  amount: 0.5,
+  payloadType: 'function',
+  functionName: 'someFunctionName',
+  abiJSON: '{...}',
+  functionParams: '{...}',
+});</code></pre></div><div class="gtr"><h2>Send Tokens With Payload</h2><pre><code>oberton.sendTokens({
+  to: '0:dc5612b47ef94b8eed1358f2d118757c66e2a120e9d3e623b148710a50661f20',
+  amount: 0.5,
+  payloadType: 'payload',
+  payload: '...',
+});</code></pre></div><div class="gtr"><h2>Destroy</h2><p>Destroys oberton instance, with all related event listeners</p><pre><code>oberton.destroy();</code></pre></div><div class="gtr" id="events"><h1>Events</h1></div><ul><li>error - any error, related to interaction with extension, most common is when extension not installed, and <a class="mono" href="#use">{skipPromoDialog: true}</a> promo dialog is hidden</li><li>transactionSent - when transaction initiated by oberton.sendTokens has been sent, callback argument provides transaction details</li><li>transactionFailed - for some reason, transaction is failed to be sent, callback argument provides fail details</li></ul><pre><code>import Oberton from '@oberton/sdk';
+
+const oberton = new Oberton();
+
+oberton
+
+  /* extension is not installed or unreacheable
+   * or transaction failed to sent */
+  .on('error', (data) => console.log('error', data))
+
+  /* transaction has been sent */
+  .on('transactionSent', (data) => console.log('transactionSent', data)) // transactionSent, provides details from the @tonclient SDK
+
+  /* transaction failed */
+  .on('transactionFailed', (data) => console.log('transactionFailed', data))
+
+  /* any response from an extension, included errors and transactions events */
+  .on('response', (data) => console.log('response', data));
+
+oberton.sendTokens({
+  to: '0:4b0cc91b506e5cff29eb1cb64f0b543e0d15ac6e3a3743ec462a711abbc7aa36',
+  amount: 0.5,
+  payloadType: 'comment',
+  comment: 'Hello World2',
+});</code></pre></div></div></div><script src="/index.js"></script></body></html>
