@@ -4,7 +4,7 @@ more info [https://oberton.github.io/chrome_freeton_extension_js_sdk](https://ob
 
 You can use CDN script
 
-`<script src="https://cdn.jsdelivr.net/npm/@oberton/sdk@1.0.3/docs/index.js"></script>`
+`<script src="https://cdn.jsdelivr.net/npm/@oberton/sdk@1.0.4/docs/index.js"></script>`
 
 or run
 
