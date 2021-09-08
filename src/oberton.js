@@ -145,4 +145,4 @@ function init(network = 'net.ton.dev', config = {}) {
   return this.sessionId;
 }
 
-export default init;
+module.exports = init;

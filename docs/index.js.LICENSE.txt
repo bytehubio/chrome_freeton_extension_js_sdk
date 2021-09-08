@@ -2,12 +2,38 @@
  * Demo shows the examples, how to call sdk
  */
 
-/* harmony default export */
+/* harmony import */
+
+/* webpack/runtime/compat get default export */
+
+/*#__PURE__*/
+
+/************************************************************************/
 
 /******/
 
-// CONCATENATED MODULE: ../src/oberton.js
+/***/
 
-// CONCATENATED MODULE: ./index.js
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// The module cache
+
+// The require function
+
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+
+// define getter functions for harmony exports
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// no module.id needed
+
+// no module.loaded needed
 
 // webpackBootstrap
