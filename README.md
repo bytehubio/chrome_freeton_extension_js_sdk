@@ -1,10 +1,10 @@
 # chrome_freeton_extension_js_sdk
 
-more info [https://sdk.oberton.io](sdk.oberton.io)
+more info [sdk.oberton.io](https://sdk.oberton.io)
 
 You can use CDN script
 
-`<script src="https://cdn.jsdelivr.net/npm/@oberton/sdk@1.0.5/docs/index.js"></script>`
+`<script src="https://cdn.jsdelivr.net/npm/@oberton/sdk@1.0.6/docs/index.js"></script>`
 
 or run
 
