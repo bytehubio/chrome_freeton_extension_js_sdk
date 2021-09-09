@@ -1,7 +1,12 @@
 {
   "name": "@oberton/sdk",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "SDK to interact from web with the Oberton Chrome Extension",
+  "homepage": "https://sdk.oberton.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oberton/chrome_freeton_extension_js_sdk.git"
+  },
   "main": "src/oberton.js",
   "scripts": {
     "dev": "webpack serve --port 1238",
